@@ -7,12 +7,14 @@ extern keymap_config_t keymap_config;
 #define _RS 2
 #define _NUM 3
 #define _SYM 4
+#define _FKEY 4
 
 enum custom_keycodes {
   LW,
   RS,
   NUM,
   SYM,
+  FKEY,
 };
 
 #define _______ KC_TRNS
@@ -42,8 +44,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_LW] = LAYOUT( \
-    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11 , KC_F12 ,  \
-    _______, NUM,     ___X___, ___X___, SYM,     ___X___, ___X___, KC_HOME, KC_UP,   KC_END,  KC_PGUP, ___X___,  \
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,  \
+    _______, FKEY,    ___X___, ___X___, SYM,     ___X___, ___X___, KC_HOME, KC_UP,   KC_END,  KC_PGUP, ___X___,  \
     _______, KC_LCTL, KC_LSFT, KC_LGUI, KC_LALT, ___X___, ___X___, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, ___X___,  \
     _______, NUM,     ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, _______,  \
     _______, _______, _______, _______, _______, _______, _______, KC_DEL,  ___X___, _______, _______, _______   \
@@ -71,6 +73,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ___X___, _______, _______, _______, _______, ___X___, ___X___, ___X___, ___X___, ___X___, KC_BSLS, ___X___,  \
     ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,  \
     ___X___, ___X___, ___X___, ___X___, _______, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___   \
+  ),
+
+  [_FKEY] = LAYOUT( \
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,  \
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,  \
+    ___X___, _______, _______, _______, _______, ___X___, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,    \
+    ___X___, _______, ___X___, ___X___, ___X___, ___X___, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11 , KC_F12,   \
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___   \
   )
 
 /*
@@ -115,6 +125,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_on(_SYM);
       } else {
         layer_off(_SYM);
+      }
+      return false;
+      break;
+    case FKEY:
+      if (record->event.pressed) {
+        layer_on(_FKEY);
+      } else {
+        layer_off(_FKEY);
       }
       return false;
       break;
