@@ -7,7 +7,7 @@ extern keymap_config_t keymap_config;
 #define _RS 2
 #define _NUM 3
 #define _SYM 4
-#define _FKEY 4
+#define _FKEY 5
 
 enum custom_keycodes {
   LW,
