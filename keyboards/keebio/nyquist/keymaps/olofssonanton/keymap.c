@@ -3,15 +3,15 @@
 extern keymap_config_t keymap_config;
 
 #define _QW 0
-#define _LW 1
-#define _RS 2
+#define _NAV 1
+#define _FUN 2
 #define _NUM 3
 #define _SYM 4
 #define _FKEY 5
 
 enum custom_keycodes {
-  LW = SAFE_RANGE,
-  RS,
+  NAV = SAFE_RANGE,
+  FUN,
   NUM,
   SYM,
   FKEY
@@ -40,10 +40,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,  \
     KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,  \
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,  \
-    KC_LCTL, KC_LGUI, ___X___, KC_LALT, LW,      KC_SPC,  KC_ENT,  KC_BSPC, RS,      KC_RALT, KC_APP,  KC_RCTL   \
+    KC_LCTL, KC_LGUI, ___X___, KC_LALT, NAV,     KC_SPC,  KC_ENT,  KC_BSPC, FUN,     KC_RALT, KC_APP,  KC_RCTL   \
   ),
 
-  [_LW] = LAYOUT( \
+  [_NAV] = LAYOUT( \
     ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,  \
     _______, FKEY,    ___X___, ___X___, SYM,     ___X___, ___X___, KC_HOME, KC_UP,   KC_END,  KC_PGUP, ___X___,  \
     _______, KC_LCTL, KC_LSFT, KC_LGUI, KC_LALT, ___X___, ___X___, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, ___X___,  \
@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, KC_DEL,  ___X___, _______, _______, _______   \
   ),
 
-  [_RS] = LAYOUT( \
+  [_FUN] = LAYOUT( \
     ___X___, ___X___, ___X___, ___X___, ___X___, RGB_HUD, RGB_HUI, ___X___, ___X___, ___X___, ___X___, ___X___,  \
     RESET,   ___X___, ___X___, ___X___, ___X___, RGB_SAD, RGB_SAI, ___X___, ___X___, ___X___, ___X___, ___X___,  \
     KC_MPRV, KC_MPLY, KC_MNXT, ___X___, ___X___, RGB_VAD, RGB_VAI, ___X___, ___X___, ___X___, ___X___, ___X___,  \
@@ -96,19 +96,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case LW:
+    case NAV:
       if (record->event.pressed) {
-        layer_on(_LW);
+        layer_on(_NAV);
       } else {
-        layer_off(_LW);
+        layer_off(_NAV);
       }
       return false;
       break;
-    case RS:
+    case FUN:
       if (record->event.pressed) {
-        layer_on(_RS);
+        layer_on(_FUN);
       } else {
-        layer_off(_RS);
+        layer_off(_FUN);
       }
       return false;
       break;
