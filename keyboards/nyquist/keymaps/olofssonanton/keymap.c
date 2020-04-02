@@ -10,11 +10,11 @@ extern keymap_config_t keymap_config;
 #define _FKEY 5
 
 enum custom_keycodes {
-  LW,
+  LW = SAFE_RANGE,
   RS,
   NUM,
   SYM,
-  FKEY,
+  FKEY
 };
 
 #define _______ KC_TRNS
