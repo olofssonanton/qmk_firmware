@@ -48,8 +48,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_FUN] = LAYOUT_ortho_4x12(
-    RESET,   ___X___, ___X___, ___X___, ___X___, ___X___, RGB_HUD, RGB_SAI, RGB_VAI, RGB_MOD, ___X___, ___X___,
-    KC_MPRV, KC_MPLY, KC_MNXT, ___X___, ___X___, ___X___, RGB_HUI, RGB_SAD, RGB_VAD, RGB_RMOD,___X___, ___X___,
+    RESET,   ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, RGB_HUD, RGB_SAI, RGB_VAI, RGB_MOD, ___X___,
+    KC_MPRV, KC_MPLY, KC_MNXT, ___X___, ___X___, ___X___, ___X___, RGB_HUI, RGB_SAD, RGB_VAD, RGB_RMOD,___X___,
     KC_VOLD, KC_MUTE, KC_VOLU, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,
     ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, RGB_TOG, ___X___, _______, ___X___, ___X___, ___X___
   ),
