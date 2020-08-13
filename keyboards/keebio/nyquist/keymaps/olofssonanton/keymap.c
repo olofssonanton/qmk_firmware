@@ -1,7 +1,5 @@
 #include QMK_KEYBOARD_H
 
-extern keymap_config_t keymap_config;
-
 #define _QW 0
 #define _NAV 1
 #define _FUN 2
