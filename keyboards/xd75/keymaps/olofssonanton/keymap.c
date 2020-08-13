@@ -1,0 +1,152 @@
+/* Copyright 2020 Anton Olofsson
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+#include QMK_KEYBOARD_H
+
+#define _QW 0
+#define _NAV 1
+#define _FUN 2
+#define _NUM 3
+#define _SYM 4
+#define _FKEY 5
+
+enum custom_keycodes {
+  NAV = SAFE_RANGE,
+  FUN,
+  NUM,
+  SYM,
+  FKEY
+};
+
+#define _______ KC_TRNS
+#define ___X___ KC_NO
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
+/* QWERTY
+ * .--------------------------------------------------------------------------------------------------------------------------------------.
+ * | ESC    | Q      | W      | E      | R      | T      |        |        |        | Y      | U      | I      | O      | P      | [ (Å)  |
+ * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-----------------+--------|
+ * | TAB    | A      | S      | D      | F      | G      |        |        |        | H      | J      | K      | L      | ; (Ö)  | ' (Ä)  |
+ * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------------------------+--------|
+ * | LSHIFT | Z      | X      | C      | V      | B      |        |        |        | N      | M      | ,      | .      | /      | RSHIFT |
+ * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-----------------+--------+--------|
+ * | LCTRL  | LGUI   |        | LALT   | FN     | SPACE  |        |        |        | ENTER  | BACKSP | FN     | RALT   | APP    | RCTRL  |
+ * '--------------------------------------------------------------------------------------------------------------------------------------'
+ */
+  [_QW] = LAYOUT_ortho_5x15(
+    KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    ___X___, ___X___, ___X___, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
+    KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    ___X___, ___X___, ___X___, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,
+    KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    ___X___, ___X___, ___X___, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    ___X___, ___X___, ___X___, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+    KC_LCTL, KC_LGUI, ___X___, KC_LALT, NAV,     KC_SPC,  ___X___, ___X___, ___X___, KC_ENT,  KC_BSPC, FUN,     KC_RALT, KC_APP,  KC_RCTL
+  ),
+
+  [_NAV] = LAYOUT_ortho_5x15(
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,
+    _______, FKEY,    ___X___, ___X___, SYM,     ___X___, ___X___, ___X___, ___X___, ___X___, KC_HOME, KC_UP,   KC_END,  KC_PGUP, ___X___,
+    _______, KC_LCTL, KC_LSFT, KC_LGUI, KC_LALT, ___X___, ___X___, ___X___, ___X___, ___X___, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, ___X___,
+    _______, NUM,     ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, _______,
+    _______, _______, _______, _______, _______, _______, ___X___, ___X___, ___X___, _______, KC_DEL,  ___X___, _______, _______, _______
+  ),
+
+  [_FUN] = LAYOUT_ortho_5x15(
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,
+    RESET,   ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, RGB_HUD, RGB_SAI, RGB_VAI, RGB_MOD, ___X___,
+    KC_MPRV, KC_MPLY, KC_MNXT, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, RGB_HUI, RGB_SAD, RGB_VAD, RGB_RMOD,___X___,
+    KC_VOLD, KC_MUTE, KC_VOLU, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, RGB_TOG, ___X___, _______, ___X___, ___X___, ___X___
+  ),
+
+  [_NUM] = LAYOUT_ortho_5x15(
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, KC_PAUS, KC_NLCK, KC_CAPS, KC_SLCK, KC_PSCR, ___X___,
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, KC_7,    KC_8,    KC_9,    KC_PPLS, ___X___,
+    ___X___, _______, _______, _______, _______, ___X___, ___X___, ___X___, ___X___, ___X___, KC_4,    KC_5,    KC_6,    KC_PMNS, ___X___,
+    ___X___, _______, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, KC_1,    KC_2,    KC_3,    KC_PAST, ___X___,
+    ___X___, ___X___, ___X___, ___X___, _______, _______, ___X___, ___X___, ___X___, _______, KC_0,    KC_COMM, KC_DOT,  KC_PSLS, ___X___
+  ),
+
+  [_SYM] = LAYOUT_ortho_5x15(
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,
+    ___X___, ___X___, ___X___, ___X___, _______, ___X___, ___X___, ___X___, ___X___, ___X___, KC_LBRC, KC_RBRC, KC_MINS, KC_EQL,  ___X___,
+    ___X___, _______, _______, _______, _______, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, KC_BSLS, ___X___,
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,
+    ___X___, ___X___, ___X___, ___X___, _______, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___
+  ),
+
+  [_FKEY] = LAYOUT_ortho_5x15(
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,
+    ___X___, _______, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,
+    ___X___, _______, _______, _______, _______, ___X___, ___X___, ___X___, ___X___, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11 , KC_F12,
+    ___X___, ___X___, ___X___, ___X___, _______, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___
+  )
+
+/*
+  [_XX] = LAYOUT_ortho_5x15
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___,
+    ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___, ___X___
+  )
+*/
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case NAV:
+      if (record->event.pressed) {
+        layer_on(_NAV);
+      } else {
+        layer_off(_NAV);
+      }
+      return false;
+      break;
+    case FUN:
+      if (record->event.pressed) {
+        layer_on(_FUN);
+      } else {
+        layer_off(_FUN);
+      }
+      return false;
+      break;
+    case NUM:
+      if (record->event.pressed) {
+        layer_on(_NUM);
+      } else {
+        layer_off(_NUM);
+      }
+      return false;
+      break;
+    case SYM:
+      if (record->event.pressed) {
+        layer_on(_SYM);
+      } else {
+        layer_off(_SYM);
+      }
+      return false;
+      break;
+    case FKEY:
+      if (record->event.pressed) {
+        layer_on(_FKEY);
+      } else {
+        layer_off(_FKEY);
+      }
+      return false;
+      break;
+  }
+  return true;
+}
