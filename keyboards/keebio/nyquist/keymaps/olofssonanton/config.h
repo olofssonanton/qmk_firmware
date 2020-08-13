@@ -17,9 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-/* Use I2C or Serial, not both */
-
-#define USE_SERIAL
 // #define USE_I2C
 
 /* Select hand configuration */
@@ -34,3 +31,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_HUE_STEP 8
 #define RGBLIGHT_SAT_STEP 8
 #define RGBLIGHT_VAL_STEP 8
+
+#define MK_3_SPEED
+#define MOUSEKEY_DELAY 0
+#define MOUSEKEY_INTERVAL 8
+#define MK_MOMENTARY_ACCEL
+#define MK_W_INTERVAL_UNMOD 8

@@ -1,13 +1,15 @@
 #include QMK_KEYBOARD_H
 
-#define _QW 0
-#define _NAV 1
-#define _FUN 2
-#define _NUM 3
-#define _SYM 4
-#define _FKEY 5
-#define _MOUS 7
-#define _SCRL 8
+enum custom_layers {
+  _QW,
+  _NAV,
+  _FUN,
+  _NUM,
+  _SYM,
+  _FKEY,
+  _MOUS,
+  _SCRL,
+};
 
 enum custom_keycodes {
   NAV = SAFE_RANGE,

@@ -17,3 +17,9 @@
 #pragma once
 
 // place overrides here
+
+#define MK_3_SPEED
+#define MOUSEKEY_DELAY 0
+#define MOUSEKEY_INTERVAL 8
+#define MK_MOMENTARY_ACCEL
+#define MK_W_INTERVAL_UNMOD 8
